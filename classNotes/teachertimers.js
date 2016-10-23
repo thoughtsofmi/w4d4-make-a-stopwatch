@@ -39,6 +39,28 @@ document.getElementById('action').addEventListener('click', function() {
 })
 
 start()
+
+//Color morphing example
+var animationId
+var colorRed = 0
+var colorBlue = 0
+var colorGreen = 0
+
+function colorChange() {
+colorRed += 1 * (Math.random() > 0.5 ? 1 : -1)
+colorGreen += 1 * (Math.random() > 0.5 ? 1 : -1)
+colorBlue += 1 * (Math.random() > 0.5 ? 1 : -1)
+if (colorRed > 255) {colorRed = 255}
+else if (colorRed < 0) {colorRed = 0}
+if (colorGreen > 255) {colorGreen = 255}
+else if (colorGreen < 0) {colorGreen = 0}
+if (colorBlue > 255) {colorBlue = 255}
+else if (colorBlue < 0) {colorBlue = 0}
+
+}
+
+colorChange()
+
 // use setInterval/setTimeout/clearInterval/ClearTimeout
 // TODO Start button to start the timer.
 // TODO need counter to show every 10th seconds
@@ -48,23 +70,9 @@ start()
 //TODO if pause button is double-clicked, reset the timer to zero.
 //TODO for every sec, change the timer text color.
 
-// TODO use setInterval/setTimeout/clearInterval/ClearTimeout
-//TODO Start button to start the timer.
-// TODO need counter to show every 10th seconds
-// TODO after clicking start... change text to pause
-//TODO timer is running.. click the pause button and turn it into continue.  to restart.
-//TODO if timer remains paused for 15 secs. reset the timer to zero.
-//TODO if pause button is double-clicked, reset the timer to zero.
-//TODO for every sec, change the timer text color.
 
-// TODO use setInterval/setTimeout/clearInterval/ClearTimeout
-//TODO Start button to start the timer.
-// TODO need counter to show every 10th seconds
-// TODO after clicking start... change text to pause
-//TODO timer is running.. click the pause button and turn it into continue.  to restart.
-//TODO if timer remains paused for 15 secs. reset the timer to zero.
-//TODO if pause button is double-clicked, reset the timer to zero.
-//TODO for every sec, change the timer text color.
+
+
 
 var timer
 var counter = 0;
