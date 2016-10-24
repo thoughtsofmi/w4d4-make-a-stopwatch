@@ -7,25 +7,15 @@
 //TODO if pause button is double-clicked, reset the timer to zero.
 //TODO for every sec, change the timer text color.
 
-var color
+var timer
 var counter = 0;
-var red
-var blue
-var green
-
-
-
-
-
 
 
 function start() {timer = setInterval(doThis, 1000);}
 function doThis() {
-
-
     counter++;
-document.getElementById('background').style.color = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
-
+    document.body.style.background = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+    document.getElementById('background').style.color = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
 
     var hour = Math.floor(counter /3600);
     var minute = Math.floor((counter - hour*3600)/60);
@@ -35,41 +25,39 @@ document.getElementById('background').style.color = 'rgb(' + (Math.floor(Math.ra
 }
 
 var actionButton = document.getElementById('action')
-var after15 = setInterval(reset, 15000)
-actionButton.addEventListener('click', function()
-    {clearInterval(timer)
+var timerbox =  document.getElementById("timer")
+//
+actionButton.addEventListener('click', function(){
+        //clearInterval(timer)
 
         if (this.innerHTML === 'Pause'){
             clearInterval(timer)
             this.innerHTML = 'Continue'
+            setInterval(after15, 15000)
         }
         else if ( this.innerHTML === 'Continue'){
             start()
             this.innerHTML = "Pause"
-            clearInterval(after15)
         }
         else if (this.innerHTML === 'START'){
-            //clearInterval(timer)
+            clearInterval()
             start()
             this.innerHTML = "Pause"
         }
-    })
+})
+//whoooo it works.  I had this in the wrong section the whole time.
+function after15 () {
+    clearInterval(timer)
+    actionButton.innerHTML = 'START'
+    timerbox.innerHTML = "0"+ ":" + '0' + ":" + '0';
+    counter = 0
+}
 
-//function is double-clicked.  reset to zero.
-
+//function is double-clicked.  reset to zero.  This did not work the longest time.  Changed the innerHTMl from continue to pause and i had a seperate function for the clearInterval and just put it into this one.
 actionButton.addEventListener('dblclick', function(){
- if
-     (this.innerHTML === 'Continue'){
-         setInterval(reset, 1000)
-
-     }
- })
-
-var timerbox =  document.getElementById("timer")
- function reset(){
-     clearInterval(timer)
-actionButton.innerHTML = 'START'
-     timerbox.innerHTML = "0"+ ":" + '0' + ":" + '0';
-     counter = 0
-
-     }
+     (this.innerHTML === 'Pause')
+        clearInterval()
+        actionButton.innerHTML = 'START'
+        timerbox.innerHTML = "0"+ ":" + '0' + ":" + '0';
+        counter = 0
+    })
